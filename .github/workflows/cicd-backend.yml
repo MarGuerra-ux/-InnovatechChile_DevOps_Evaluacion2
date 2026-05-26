@@ -29,11 +29,13 @@ jobs:
       - name: Deploy en EC2 Backend
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.BACKEND_EC2_IP }}
+          host: ${{ secrets.FRONTEND_EC2_IP }}
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull onichanmarco/backend-devops:latest
-            cd ~/app
-            docker-compose down
-            docker-compose up -d
+            ssh -i ~/KEY_DEVOPS_EV2.pem -o StrictHostKeyChecking=no ec2-user@10.0.2.136 "
+              docker pull onichanmarco/backend-devops:latest &&
+              cd ~/app &&
+              docker-compose down &&
+              docker-compose up -d
+            "
