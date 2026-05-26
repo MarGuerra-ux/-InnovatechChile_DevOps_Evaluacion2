@@ -71,4 +71,4 @@ El pipeline se activa al hacer push a la rama \`deploy\`.
 - Maf.Vergara-ux
 "@ | Set-Content "README.md" -Encoding UTF8
 
-cat "README.md"
+
